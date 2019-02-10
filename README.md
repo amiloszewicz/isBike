@@ -1,22 +1,14 @@
 # isBike
 
-A bicycle, also called a cycle or bike, is a human-powered or motor-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.
-> Wikipedia
-
-Bicycle commuting is the use of a bicycle to travel from home to a place of work or study — in contrast to the use of a bicycle for sport, recreation or touring.
-> Wikipedia
-
-A city bicycle, urban bicycle, European city bike (ECB), classic bike or simply city-bike, is a bicycle designed for frequent short, moderately paced rides through relatively flat urban areas. It is a form of utility bicycle commonly seen around the world, built to facilitate everyday riding in normal clothes in a variety of weather conditions.
-> Wikipedia!!
-
-isBike application is about bicycles, bike commuting, city bicycles and YOU & me. isBike is sharing information with a user about city bike stations, their location, amount of available bikes to rent at station, open slots to left bike in and etc.
+isBike application is about bicycles, bike commuting, city bicycles, YOU & me. isBike is sharing information with a user about city bike stations, their location,<br>
+amount of available bikes to rent at station, open slots to leave bike and etc.
 
 ## Getting started
 
-~~This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).~~
+*This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).*
 
-Cloning repository:
-`https://github.com/amiloszewicz/is-bike.git` or `git@github.com:amiloszewicz/is-bike.git`
+Cloning repository bu https: `https://github.com/amiloszewicz/isBike.git`<br>
+or by SSH: `git@github.com:amiloszewicz/isBike.git`
 
 ## Available Scripts
 
@@ -88,6 +80,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## Authors
 
 * [Adam Miłoszewicz](https://github.com/amiloszewicz)
+
+## Technologies
+
+- React
+- [CityBikes API](https://api.citybik.es/v2/)
 
 ## Acknowledgments
 
