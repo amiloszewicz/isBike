@@ -1,13 +1,13 @@
 # isBike
 
-isBike application is about bicycles, bike commuting, city bicycles, YOU & me. isBike is sharing information with a user about city bike stations, their location,<br>
+isBike application is about bicycles, bike commuting, city bicycles, YOU & me. isBike is sharing information with a user about city bike stations, their location,
 amount of available bikes to rent at station, open slots to leave bike and etc.
 
 ## Getting started
 
 *This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).*
 
-Cloning repository bu https: `https://github.com/amiloszewicz/isBike.git`<br>
+Cloning repository by https: `https://github.com/amiloszewicz/isBike.git`<br>
 or by SSH: `git@github.com:amiloszewicz/isBike.git`
 
 ## Available Scripts
