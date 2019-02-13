@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from './Header';
+import SearchBar from './SearchBar';
 
 import './style.css';
 
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <SearchBar />
         <ul>
           {bikeNetworks.map(network => (
             <li key={network.id}>
