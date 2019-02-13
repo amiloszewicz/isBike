@@ -7,18 +7,25 @@ import './style.css';
 
 class App extends Component {
   state = {
-    bikeNetworks: []
+    bikeNetworks: [],
+    isLoading: false
   };
 
   componentDidMount() {
+    this.setState({ isLoading: true });
+
     fetch('https://api.citybik.es/v2/networks')
       .catch(error => console.log(error))
       .then(response => response.json())
-      .then(response => this.setState({ bikeNetworks: response.networks }));
+      .then(response => this.setState({ bikeNetworks: response.networks, isLoading: false }));
   }
 
   render() {
-    const { bikeNetworks } = this.state;
+    const { bikeNetworks, isLoading } = this.state;
+
+    if (isLoading) {
+      return <p>Loading...</p>
+    }
 
     return (
       <div>
