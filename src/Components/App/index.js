@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from './Header';
 import SearchBar from './SearchBar';
@@ -16,16 +17,13 @@ class App extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    fetch('https://api.citybik.es/v2/networks')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Something went wrong...');
-        }
-      })
+    axios
+      .get('https://api.citybik.es/v2/networks')
       .then(response =>
-        this.setState({ bikeNetworks: response.networks, isLoading: false })
+        this.setState({
+          bikeNetworks: response.data.networks,
+          isLoading: false
+        })
       )
       .catch(error => this.setState({ error, isLoading: false }));
   }
@@ -43,22 +41,24 @@ class App extends Component {
 
     return (
       <>
-        {error ?
-        <p>{error.message}</p> : isLoading
-        ?<p>Loading...</p> :
-        <div>
-          <Header />
-          <SearchBar handleOnChange={this.handleInputChange} />
-          <ul>
-            {bikeNetworks.map(network => (
-              <li key={network.id}>
-                <p>{network.location.country}</p>
-                <p>{network.location.city}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        }
+        {error ? (
+          <p>{error.message}</p>
+        ) : isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            <Header />
+            <SearchBar handleOnChange={this.handleInputChange} />
+            <ul>
+              {bikeNetworks.map(network => (
+                <li key={network.id}>
+                  <p>{network.location.country}</p>
+                  <p>{network.location.city}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </>
     );
   }
