@@ -14,30 +14,43 @@ class App extends Component {
     searchQuery: ''
   };
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
+  // componentDidMount() {
+  //   this.setState({ isLoading: true });
 
-    axios
-      .get('https://api.citybik.es/v2/networks')
-      .then(response =>
-        this.setState({
-          bikeNetworks: response.data.networks,
-          isLoading: false
-        })
-      )
-      .catch(error => this.setState({ error, isLoading: false }));
-  }
+  //   axios
+  //     .get('https://api.citybik.es/v2/networks')
+  //     .then(response =>
+  //       this.setState({
+  //         bikeNetworks: response.data.networks,
+  //         isLoading: false
+  //       })
+  //     )
+  //     .catch(error => this.setState({ error, isLoading: false }));
+  // }
 
   handleInputChange = event => {
-    const InputText = event.target.value;
-    console.log(event.target.value);
+    const inputText = event.target.value;
     this.setState({
-      searchQuery: InputText
+      searchQuery: inputText
     });
+
+    if (inputText.length > 1) {
+      this.setState({ isLoading: true });
+      axios
+        .get('https://api.citybik.es/v2/networks')
+        .then(response =>
+          this.setState({
+            bikeNetworks: response.data.networks,
+            isLoading: false
+          })
+        )
+        .catch(error => this.setState({ error, isLoading: false }));
+    }
   };
 
   render() {
     const { bikeNetworks, isLoading, error } = this.state;
+    console.log(bikeNetworks);
 
     return (
       <>
