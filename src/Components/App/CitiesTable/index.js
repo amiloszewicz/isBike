@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import CityRow from './CityRow';
+
 import './style.css'
 
 class CitiesTable extends Component {
@@ -7,11 +10,11 @@ class CitiesTable extends Component {
       <>
       <h2>Cities list:</h2>
       <ul>
-        {/* {this.props.bikeNetworks.map(network => (
+        {this.props.results.map(network => (
           <li key={network.id}>
             <p>{network.location.city}</p>
           </li>
-        ))} */}
+        ))}
       </ul>
       </>
     );
