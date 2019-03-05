@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 
 import CityRow from './CityRow';
 
-import './style.css'
+import './style.css';
 
 class CitiesTable extends Component {
   render() {
-    return(
+    const networks = this.props.results.map(network => network);
+    const queryNetworks = networks.filter(network =>
+      network.location.city.includes(this.props.query)
+    );
+
+    return (
       <>
-      <h2>Cities list:</h2>
-      <ul>
-        {this.props.results.map(network => (
-          <li key={network.id}>
-            <p>{network.location.city}</p>
-          </li>
-        ))}
-      </ul>
+        <h2>Cities list:</h2>
+        <ul>
+          {queryNetworks.map(network => (
+            <li key={network.id}>
+              <CityRow name={network.location.city} />
+            </li>
+          ))}
+        </ul>
       </>
     );
   }
