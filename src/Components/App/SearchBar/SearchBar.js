@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import CitiesTable from '../CitiesTable';
-
+import CitiesTable from '../CitiesTable/CitiesTable.js';
 import axios from "axios";
-
-import "./style.css";
 
 class SearchBar extends Component {
   state = {

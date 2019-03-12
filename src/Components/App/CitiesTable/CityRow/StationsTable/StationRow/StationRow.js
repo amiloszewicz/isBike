@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class StationRow extends React.Component {
+class StationRow extends Component {
   render() {
     return <>{this.props.stationName}</>;
   }

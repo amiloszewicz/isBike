@@ -1,7 +1,7 @@
-import React from 'react';
-import StationRow from './StationRow';
+import React, { Component } from 'react';
+import StationRow from './StationRow/StationRow.js';
 
-class StationsTable extends React.Component {
+class StationsTable extends Component {
   render() {
     return (
       <ul>

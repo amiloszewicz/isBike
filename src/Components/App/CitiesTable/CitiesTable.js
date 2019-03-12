@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
-import CityRow from './CityRow';
-
-import './style.css';
+import CityRow from './CityRow/CityRow.js';
 
 class CitiesTable extends Component {
   render() {

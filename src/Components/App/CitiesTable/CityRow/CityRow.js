@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import StationsTable from './StationsTable/StationsTable.js';
 
-import StationsTable from './StationsTable';
-
-class CityRow extends React.Component {
+class CityRow extends Component {
   state = {
     stations: []
   };

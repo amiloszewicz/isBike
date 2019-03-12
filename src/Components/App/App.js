@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-
-import Header from './Header';
-import SearchBar from './SearchBar';
-
-import './style.css';
+import Header from './Header/Header.js';
+import SearchBar from './SearchBar/SearchBar.js';
 
 class App extends Component {
   render() {
