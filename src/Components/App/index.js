@@ -9,12 +9,10 @@ import './style.css';
 class App extends Component {
   render() {
     return (
-      <>
-        <div>
-          <Header />
-          <SearchBar />
-        </div>
-      </>
+      <div>
+        <Header />
+        <SearchBar />
+      </div>
     );
   }
 }
