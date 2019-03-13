@@ -1,14 +1,46 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from './Header/Header.js';
 import SearchBar from './SearchBar/SearchBar.js';
+import CitiesTable from './CitiesTable/CitiesTable.js';
 
 class App extends Component {
+  state = {
+    query: '',
+    results: []
+  };
+
+  getInfo = () => {
+    axios
+      .get('https://api.citybik.es/v2/networks')
+      .then(response =>
+        this.setState({
+          results: response.data.networks
+        })
+      )
+      .catch(error => this.setState({ error }));
+  };
+
+  handleInputChange = event => {
+    const text = event.target.value;
+    this.setState(
+      {
+        query: text
+      },
+      () => {
+        if (this.state.query && this.state.query.length > 1) {
+          this.getInfo();
+        }
+      }
+    );
+  };
   render() {
     return (
-      <div>
+      <>
         <Header />
-        <SearchBar />
-      </div>
+        <SearchBar onChange={this.handleInputChange} />
+        <CitiesTable results={this.state.results} query={this.state.query} />
+      </>
     );
   }
 }

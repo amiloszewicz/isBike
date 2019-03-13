@@ -7,7 +7,12 @@ class StationsTable extends Component {
       <ul>
         {this.props.stations.map(station => (
           <li key={station.id}>
-            <StationRow stationName={station.name} />
+            <StationRow
+              stationName={station.name}
+              emptySlots={station.empty_slots}
+              freeBikes={station.free_bikes}
+              lastUpdate={station.timestamp}
+            />
           </li>
         ))}
       </ul>
