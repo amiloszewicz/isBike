@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
+import StationDetails from './StationDetails/StationDetails';
 
 class StationRow extends Component {
+  state = {
+    showDetails: false
+  };
+
+  showDetails = () => {
+    this.setState(prevState => ({
+      showDetails: !prevState.showDetails
+    }));
+  };
+
   render() {
     return (
-      <div>
+      <>
         <h3>{this.props.stationName}</h3>
         <table>
           <thead>
@@ -21,8 +32,11 @@ class StationRow extends Component {
             </tr>
           </tbody>
         </table>
-        <button>details</button>
-      </div>
+        <button type='button' onClick={this.showDetails}>
+          more
+        </button>
+        <StationDetails showDetails={this.state.showDetails} />
+      </>
     );
   }
 }
