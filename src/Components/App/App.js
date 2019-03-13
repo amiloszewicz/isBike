@@ -28,7 +28,11 @@ class App extends Component {
         query: text
       },
       () => {
-        if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length < 2) {
+          this.setState({
+            results: []
+          });
+        } else {
           this.getInfo();
         }
       }
