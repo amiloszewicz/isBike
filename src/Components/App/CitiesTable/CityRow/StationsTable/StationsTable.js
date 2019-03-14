@@ -12,6 +12,10 @@ class StationsTable extends Component {
               emptySlots={station.empty_slots}
               freeBikes={station.free_bikes}
               lastUpdate={station.timestamp}
+              stationId={station.id}
+              allSlots={station.extra.slots}
+              latitude={station.latitude}
+              longitude={station.longitude}
             />
           </li>
         ))}

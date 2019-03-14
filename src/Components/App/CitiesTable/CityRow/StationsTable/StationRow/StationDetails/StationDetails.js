@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 
-class StationMoreDetails extends Component {
+class StationDetails extends Component {
   render() {
     return (
       <div>
-        <h1>Hilla</h1>
-        {/* <p>{this.props.extra.slots}</p> */}
-        <p>{this.props.latitude}</p>
-        <p>{this.props.longitude}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>All slots</th>
+              <th>latitude</th>
+              <th>longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{this.props.allSlots}</td>
+              <td>{this.props.latitude}</td>
+              <td>{this.props.longitude}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
-export default StationMoreDetails;
+export default StationDetails;

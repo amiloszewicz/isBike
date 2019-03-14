@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StationDetails from './StationDetails/StationDetails';
+import StationDetails from './StationDetails/StationDetails.js';
 
 class StationRow extends Component {
   state = {
@@ -35,7 +35,15 @@ class StationRow extends Component {
         <button type='button' onClick={this.showDetails}>
           more
         </button>
-        <StationDetails showDetails={this.state.showDetails} />
+        {this.state.showDetails === true ? (
+          <StationDetails
+            allSlots={this.props.allSlots}
+            latitude={this.props.latitude}
+            longitude={this.props.longitude}
+          />
+        ) : (
+          true
+        )}
       </>
     );
   }
