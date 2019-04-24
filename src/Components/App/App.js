@@ -16,7 +16,8 @@ class App extends Component {
       .then(response =>
         this.setState({
           results: response.data.networks
-        })      )
+        })
+      )
       .catch(error => this.setState({ error }));
   };
 
