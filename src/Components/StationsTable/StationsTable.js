@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StationRow from './StationRow/StationRow.js';
+import StationRow from '../StationRow/StationRow.js';
 
 class StationsTable extends Component {
   render() {

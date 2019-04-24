@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Header from './Header/Header.js';
-import SearchBar from './SearchBar/SearchBar.js';
-import CitiesTable from './CitiesTable/CitiesTable.js';
+import Header from '../Header/Header.js';
+import SearchBar from '../SearchBar/SearchBar.js';
+import CitiesTable from '../CitiesTable/CitiesTable.js';
 
 class App extends Component {
   state = {
@@ -16,8 +16,7 @@ class App extends Component {
       .then(response =>
         this.setState({
           results: response.data.networks
-        })
-      )
+        })      )
       .catch(error => this.setState({ error }));
   };
 
@@ -28,6 +27,7 @@ class App extends Component {
         query: text
       },
       () => {
+        this.getInfo();
         if (this.state.query.length < 2) {
           this.setState({
             results: []

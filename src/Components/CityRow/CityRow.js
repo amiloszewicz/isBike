@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import StationsTable from './StationsTable/StationsTable.js';
+import StationsTable from '../StationsTable/StationsTable.js';
 
 class CityRow extends Component {
   state = {
