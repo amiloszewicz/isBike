@@ -13,10 +13,24 @@ class App extends Component {
   state = {
     query: '',
     results: [],
-    lat: 51.505,
-    lng: -0.09,
+    location: {
+      lat: 51.505,
+      lng: -0.09
+    },
     zoom: 13
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords.latitude, position.coords.longitude);
+      this.setState({
+        location: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      })
+    });
+  }
 
   getInfo = () => {
     axios
@@ -49,7 +63,7 @@ class App extends Component {
   };
 
   render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [this.state.location.lat, this.state.location.lng];
     return (
       <>
         <Map position={position} />
