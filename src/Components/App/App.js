@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
+
 import Header from '../Header/Header.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import CitiesTable from '../CitiesTable/CitiesTable.js';
@@ -50,7 +52,7 @@ class App extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <>
-        <Map className='map' position={position}/>
+        <Map position={position} />
         <Header />
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
