@@ -50,7 +50,7 @@ class App extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <>
-        <Map position={position}/>
+        <Map className='map' position={position}/>
         <Header />
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
