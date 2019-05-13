@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 
-import style from './SearchBar.css';
+import './SearchBar.css';
 
 class SearchBar extends Component {
   inputElement = createRef();
