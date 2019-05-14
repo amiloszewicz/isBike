@@ -8,7 +8,7 @@ class Map extends Component {
     return (
       <LeafletMap
         center={this.props.position}
-        zoom={6}
+        zoom={this.props.zoom}
         maxZoom={10}
         attributionControl={true}
         zoomControl={true}
@@ -19,9 +19,13 @@ class Map extends Component {
         easeLinearity={0.35}
       >
         <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-        <Marker position={this.props.position}>
-          <Popup>Popup for any custom information.</Popup>
-        </Marker>
+        {this.props.haveUserLocation ? (
+          <Marker position={this.props.position}>
+            <Popup>Popup for any custom information.</Popup>
+          </Marker>
+        ) : (
+          ''
+        )}
       </LeafletMap>
     );
   }

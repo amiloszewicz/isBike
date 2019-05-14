@@ -17,9 +17,15 @@ class App extends Component {
       lat: 51.505,
       lng: -0.09
     },
-    zoom: 13
+    zoom: 3,
+    haveUserLocation: false
   };
 
+  /**
+   * get user location with browser
+   * @param {number} location.lat
+   * @param {number} location.lng
+   */
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(position => {
       console.log(position.coords.latitude, position.coords.longitude);
@@ -27,8 +33,10 @@ class App extends Component {
         location: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }
-      })
+        },
+        haveUserLocation: true,
+        zoom: 13
+      });
     });
   }
 
@@ -66,7 +74,12 @@ class App extends Component {
     const position = [this.state.location.lat, this.state.location.lng];
     return (
       <>
-        <Map position={position} />
+        <Map
+          position={position}
+          haveUserLocation={this.state.haveUserLocation}
+          zoom={this.state.zoom}
+        />
+        haveUserLocation
         <Header />
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
