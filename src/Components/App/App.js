@@ -21,25 +21,55 @@ class App extends Component {
     haveUserLocation: false
   };
 
+  componentDidMount() {
+    this.getUserCurrentPosition();
+  }
+
   /**
-   * get user location with browser
+   * Get users location with the browser
    * @param {number} location.lat
    * @param {number} location.lng
    */
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(position => {
-      console.log(position.coords.latitude, position.coords.longitude);
-      this.setState({
-        location: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        },
-        haveUserLocation: true,
-        zoom: 13
-      });
-    });
+  getUserCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          location: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          },
+          haveUserLocation: true,
+          zoom: 13
+        });
+      },
+      /**
+       * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API#Fine_tuning_response
+       * * Get users location with their IP using an API (if browser fails)
+       * @param {number} location.data.longitude
+       * @param {number} location.data.longitude
+       */
+      () => {
+        axios
+          .get('https://ipapi.co/json')
+          .then(location =>
+            this.setState({
+              location: {
+                lat: location.data.longitude,
+                lng: location.data.longitude
+              },
+              haveUserLocation: true,
+              zoom: 13
+            })
+          )
+          .catch(error => this.setState({ error }));
+      }
+    );
   }
 
+  /**
+   * Get bikes stations networks using an API
+   * @param {object} response.data.networks
+   */
   getInfo = () => {
     axios
       .get('https://api.citybik.es/v2/networks')
@@ -51,6 +81,11 @@ class App extends Component {
       .catch(error => this.setState({ error }));
   };
 
+  /**
+   * Set state on text change from form and
+   * send results after 2 or more typed letters
+   * @param {string} text
+   */
   handleInputChange = event => {
     const text = event.target.value;
     this.setState(
@@ -72,6 +107,7 @@ class App extends Component {
 
   render() {
     const position = [this.state.location.lat, this.state.location.lng];
+
     return (
       <>
         <Map
@@ -79,7 +115,6 @@ class App extends Component {
           haveUserLocation={this.state.haveUserLocation}
           zoom={this.state.zoom}
         />
-        haveUserLocation
         <Header />
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
