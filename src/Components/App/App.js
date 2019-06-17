@@ -17,7 +17,7 @@ class App extends Component {
       lat: 51.505,
       lng: -0.09
     },
-    zoom: 3,
+    zoom: 13,
     haveUserLocation: false
   };
 
@@ -32,11 +32,11 @@ class App extends Component {
    */
   getUserCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
-      position => {
+      userGeoPosition => {
         this.setState({
           location: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            lat: userGeoPosition.coords.latitude,
+            lng: userGeoPosition.coords.longitude
           },
           haveUserLocation: true,
           zoom: 13
@@ -45,17 +45,17 @@ class App extends Component {
       /**
        * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API#Fine_tuning_response
        * * Get users location with their IP using an API (if browser fails)
-       * @param {number} location.data.longitude
+       * @param {number} location.data.latitude
        * @param {number} location.data.longitude
        */
       () => {
         axios
           .get('https://ipapi.co/json')
-          .then(location =>
+          .then(userIpLocation =>
             this.setState({
               location: {
-                lat: location.data.longitude,
-                lng: location.data.longitude
+                lat: userIpLocation.data.latitude,
+                lng: userIpLocation.data.longitude
               },
               haveUserLocation: true,
               zoom: 13
@@ -106,12 +106,12 @@ class App extends Component {
   };
 
   render() {
-    const position = [this.state.location.lat, this.state.location.lng];
+    const userLocation = [this.state.location.lat, this.state.location.lng];
 
     return (
       <>
         <Map
-          position={position}
+          userLocation={userLocation}
           haveUserLocation={this.state.haveUserLocation}
           zoom={this.state.zoom}
         />
