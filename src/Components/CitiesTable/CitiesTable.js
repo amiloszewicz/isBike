@@ -9,16 +9,13 @@ class CitiesTable extends Component {
     );
 
     return (
-      <>
-        <h2>Cities list:</h2>
-        <ul>
-          {queryNetworks.map(network => (
-            <li key={network.id}>
-              <CityRow cityName={network.location.city} network={network} />
-            </li>
-          ))}
-        </ul>
-      </>
+      <ul>
+        {queryNetworks.map(network => (
+          <li key={network.id}>
+            <CityRow cityName={network.location.city} network={network} />
+          </li>
+        ))}
+      </ul>
     );
   }
 }
