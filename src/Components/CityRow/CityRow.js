@@ -4,10 +4,15 @@ import StationsTable from '../StationsTable/StationsTable.js';
 
 class CityRow extends Component {
   state = {
-    stations: []
+    stations: [],
+    showStationsList: false,
   };
 
   getStationsList = () => {
+    this.setState(prevState => ({
+      showStationsList: !prevState.showStationsList
+    }));
+
     axios
       .get(`https://api.citybik.es/v2/networks/${this.props.network.id}`)
       .then(response =>
@@ -19,12 +24,20 @@ class CityRow extends Component {
   };
 
   render() {
-    return (
-      <div onClick={this.getStationsList}>
-        {this.props.cityName}
-        { (this.state.stations.length > 0) ? (<StationsTable stations={this.state.stations} />) : null }
-      </div>
-    );
+    if (!this.state.stations) {
+      return null
+    } else {
+      return (
+        <div onClick={this.getStationsList}>
+          {this.props.cityName}
+          {this.state.showStationsList === true ? (
+            <StationsTable stations={this.state.stations} />
+          ) : (
+              true
+            )}
+        </div>
+      )
+    }
   }
 }
 
