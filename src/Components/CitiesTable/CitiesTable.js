@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CityRow from '../CityRow/CityRow.js';
 
+import './CitiesTable.css';
+
 class CitiesTable extends Component {
   render() {
     const networks = this.props.results.map(network => network);
@@ -9,7 +11,7 @@ class CitiesTable extends Component {
     );
 
     return (
-      <ul>
+      <ul className="CitiesTable">
         {queryNetworks.map(network => (
           <li key={network.id}>
             <CityRow cityName={network.location.city} network={network} />
