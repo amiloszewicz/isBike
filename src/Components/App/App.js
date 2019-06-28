@@ -6,23 +6,29 @@ import Header from '../Header/Header.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import CitiesTable from '../CitiesTable/CitiesTable.js';
 import Map from '../Map/Map.js';
+import Counter from '../Counter/Counter.js';
+
+import { connect } from 'react-redux';
+import { fetchCityBikesNetworks } from '../../redux/actions/cityBikesAction'
 
 import './App.css';
 
 class App extends Component {
   state = {
     query: '',
-    results: [],
+    //results: [],
     location: {
       lat: 51.505,
       lng: -0.09
     },
     zoom: 13,
-    haveUserLocation: false
+    haveUserLocation: false,
+    value: 0
   };
 
   componentDidMount() {
-    this.getUserCurrentPosition();
+    //this.getUserCurrentPosition();
+    this.props.dispatch(fetchCityBikesNetworks());
   }
 
   /**
@@ -70,16 +76,16 @@ class App extends Component {
    * Get bikes stations networks using an API
    * @param {object} response.data.networks
    */
-  getInfo = () => {
-    axios
-      .get('https://api.citybik.es/v2/networks')
-      .then(response =>
-        this.setState({
-          results: response.data.networks
-        })
-      )
-      .catch(error => this.setState({ error }));
-  };
+  // getInfo = () => {
+  //   axios
+  //     .get('https://api.citybik.es/v2/networks')
+  //     .then(response =>
+  //       this.setState({
+  //         results: response.data.networks
+  //       })
+  //     )
+  //     .catch(error => this.setState({ error }));
+  // };
 
   /**
    * Set state on text change from form and
@@ -118,9 +124,14 @@ class App extends Component {
         <Header />
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
+        <Counter />
       </>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  results: state.results
+})
 
 export default App;

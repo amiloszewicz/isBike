@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from './Components/App/App.js';
+import store from './redux/store/store'
+
 import * as serviceWorker from './serviceWorker';
-import store from './js/store/store'
 
 render(
   <Provider store={store}>
