@@ -8,15 +8,12 @@ import CitiesTable from '../CitiesTable/CitiesTable.js';
 import Map from '../Map/Map.js';
 import Counter from '../Counter/Counter.js';
 
-import { connect } from 'react-redux';
-import { fetchCityBikesNetworks } from '../../redux/actions/cityBikesAction'
-
 import './App.css';
 
 class App extends Component {
   state = {
     query: '',
-    //results: [],
+    results: [],
     location: {
       lat: 51.505,
       lng: -0.09
@@ -27,8 +24,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    //this.getUserCurrentPosition();
-    this.props.dispatch(fetchCityBikesNetworks());
+    this.getUserCurrentPosition();
   }
 
   /**
@@ -76,16 +72,16 @@ class App extends Component {
    * Get bikes stations networks using an API
    * @param {object} response.data.networks
    */
-  // getInfo = () => {
-  //   axios
-  //     .get('https://api.citybik.es/v2/networks')
-  //     .then(response =>
-  //       this.setState({
-  //         results: response.data.networks
-  //       })
-  //     )
-  //     .catch(error => this.setState({ error }));
-  // };
+  getInfo = () => {
+    axios
+      .get('https://api.citybik.es/v2/networks')
+      .then(response =>
+        this.setState({
+          results: response.data.networks
+        })
+      )
+      .catch(error => this.setState({ error }));
+  };
 
   /**
    * Set state on text change from form and
@@ -99,12 +95,7 @@ class App extends Component {
         query: text
       },
       () => {
-        this.getInfo();
-        if (this.state.query.length < 2) {
-          this.setState({
-            results: []
-          });
-        } else {
+        if (this.state.query.length > 2) {
           this.getInfo();
         }
       }
@@ -125,13 +116,10 @@ class App extends Component {
         <SearchBar onChange={this.handleInputChange} />
         <CitiesTable results={this.state.results} query={this.state.query} />
         <Counter />
+        <button onClick={this.fetchCityBikesNetworks}>M</button>
       </>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  results: state.results
-})
 
 export default App;

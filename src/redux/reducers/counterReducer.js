@@ -3,7 +3,7 @@ const initialState = {
   count: 0
 }
 
-const rootReducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
   console.log('reducer', state, action);
 
   switch (action.type) {
@@ -23,4 +23,4 @@ const rootReducer = (state = initialState, action) => {
   }
 }
 
-export default rootReducer;
+export default counterReducer;
