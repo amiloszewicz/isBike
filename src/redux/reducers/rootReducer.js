@@ -1,12 +1,8 @@
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import counter from './counter';
 
-// import counterReducer from "./counterReducer";
-// // import cityBikesReducer from "./cityBikesReducer";
+const rootReducer = combineReducers({
+  counter
+});
 
-// // Root Reducer
-// const rootReducer = combineReducers({
-//   counter: counterReducer,
-//   // cityBikes: cityBikesReducer
-// });
-
-// export default rootReducer;
+export default rootReducer;
